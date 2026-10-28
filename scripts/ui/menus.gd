@@ -98,9 +98,9 @@ func _on_quit() -> void:
 func _build_help(root: Control) -> void:
 	help_panel = UiKit.panel(root, Vector2(120, 36), Vector2(400, 288))
 	var text := "操作说明\n\nWASD / 方向键  移动\n"
-	text += "空格  使用当前栏位（锄地 / 浇水 / 砍树 / 敲石头 / 收割 / 播种）\n"
-	text += "E  互动（对话 / 出货箱 / 门 / 床）\n1-9 0 - =  选择工具栏\n"
-	text += "Tab  本帮助\nEsc  暂停 / 关闭面板\n\n"
+	text += "C / 鼠标左键  使用当前栏位（锄地 / 浇水 / 砍树 / 敲石头 / 收割 / 播种）\n"
+	text += "X / 鼠标右键  互动（对话 / 出货箱 / 门 / 床）\n1-9 0 - =  选择工具栏\n"
+	text += "Tab  本帮助\nE / Esc  菜单 / 关闭面板\n\n"
 	text += "目标：种下防风草，浇水 4 天，收获后放进出货箱，隔夜结算。"
 	var label := UiKit.label(help_panel, Vector2(14, 12), Vector2(372, 264), text, 11)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

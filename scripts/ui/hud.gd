@@ -100,7 +100,7 @@ func show_message(text: String) -> void:
 func show_dialogue(speaker: String, text: String, shopping: bool = false) -> void:
 	dialogue_speaker.text = speaker
 	dialogue_text.text = text
-	dialogue_hint.text = "E 关闭   B 买种子" if shopping else "E 关闭"
+	dialogue_hint.text = "X 关闭   B 买种子" if shopping else "X 关闭"
 	dialogue_panel.visible = true
 	menus.shop_panel.visible = false
 	_modal = "dialogue"

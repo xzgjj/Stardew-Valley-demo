@@ -45,11 +45,11 @@ move_down={
 }
 use_tool={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":32)]
+"events": [Object(InputEventKey,"physical_keycode":67), Object(InputEventMouseButton,"button_index":1)]
 }
 interact={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":69)]
+"events": [Object(InputEventKey,"physical_keycode":88), Object(InputEventMouseButton,"button_index":2)]
 }
 toggle_help={
 "deadzone": 0.2,
@@ -57,7 +57,7 @@ toggle_help={
 }
 pause_game={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":4194305)]
+"events": [Object(InputEventKey,"physical_keycode":4194305), Object(InputEventKey,"physical_keycode":69)]
 }
 confirm={
 "deadzone": 0.2,
