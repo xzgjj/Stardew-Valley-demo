@@ -52,7 +52,8 @@
     "README.md",
     "SPEC.md",
     "implementation_plan.md",
-    "project.godot"
+    "project.godot",
+    "implementation-notes.md"
   ],
   "policy_paths": [
     ".github/",
@@ -103,5 +104,9 @@
     "许可",
     "License",
     "授权"
-  ]
+  ],
+  "core_doc_char_overrides": {
+    "implementation_plan.md": 12000,
+    "AGENT_EXECUTION_PROTOCOL.md": 8000
+  }
 }

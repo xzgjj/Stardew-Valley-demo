@@ -56,12 +56,14 @@ def check() -> Result:
     result = Result(name=NAME)
     policy = load_policy()
 
-    limit = int(policy["max_core_doc_chars"])
+    default_limit = int(policy["max_core_doc_chars"])
+    overrides: dict = policy.get("core_doc_char_overrides", {})
     core_docs: list[str] = policy["core_docs"]
     minimum = int(policy.get("duplicate_paragraph_min_chars", 20))
 
     # --- core documents: existence, budget, duplicate paragraphs -------------
     for doc in core_docs:
+        limit = int(overrides.get(doc, default_limit))
         path = ROOT / doc
         if not path.is_file():
             result.error(
