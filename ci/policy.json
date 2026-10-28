@@ -1,0 +1,107 @@
+{
+  "schema_version": 2,
+  "max_core_doc_chars": 3000,
+  "core_docs": [
+    "CLAUDE.md",
+    "SPEC.md",
+    "implementation_plan.md",
+    "AGENT_EXECUTION_PROTOCOL.md",
+    "CLI.md",
+    "CI.md"
+  ],
+  "duplicate_paragraph_min_chars": 20,
+  "research_doc_globs": [
+    "docs/research_*.md",
+    "docs/reference_*.md"
+  ],
+  "research_doc_warn_bytes": 20480,
+  "version_docs": [
+    "README.md",
+    "CLAUDE.md",
+    "CI.md"
+  ],
+  "godot_version_file": "GODOT_VERSION.txt",
+  "max_changed_files": 50,
+  "max_diff_lines": 2400,
+  "max_gdscript_lines": 300,
+  "max_cyclomatic_complexity": 10,
+  "duplicate_block_lines": 8,
+  "gdscript_roots": [
+    "scripts",
+    "tests"
+  ],
+  "allowed_prefixes": [
+    ".github/",
+    "assets/",
+    "ci/",
+    "docs/",
+    "scenes/",
+    "scripts/",
+    "tests/",
+    "tools/"
+  ],
+  "allowed_files": [
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+    "AGENT_EXECUTION_PROTOCOL.md",
+    "CLAUDE.md",
+    "CI.md",
+    "CLI.md",
+    "GODOT_VERSION.txt",
+    "README.md",
+    "SPEC.md",
+    "implementation_plan.md",
+    "project.godot"
+  ],
+  "policy_paths": [
+    ".github/",
+    "ci/",
+    "tools/ci/",
+    "CI.md",
+    "GODOT_VERSION.txt",
+    "project.godot",
+    "tests/protected_test_cases.json",
+    "tests/test_"
+  ],
+  "policy_approver": "xzgjj",
+  "gdtoolkit_version": "4.5.0",
+  "python_min_version": "3.12",
+  "max_rounds": 3,
+  "godot_timeouts": {
+    "import": 300,
+    "test": 120,
+    "smoke": 120
+  },
+  "godot_smoke_scenes": [
+    "res://tests/scene_smoke.tscn"
+  ],
+  "godot_candidates": [
+    "$GODOT",
+    "D:\\app_finish\\Godot\\Godot_v4.7.2-stable_win64_console.exe",
+    "D:\\app_finish\\Godot\\Godot_v4.7.2-stable_win64.exe",
+    "godot",
+    "godot4",
+    "$GODOT_BIN"
+  ],
+  "asset_manifest": "docs/asset_manifest.md",
+  "asset_roots": [
+    "assets"
+  ],
+  "asset_ignore_suffixes": [
+    ".import",
+    ".uid",
+    ".pyc"
+  ],
+  "asset_ignore_files": [
+    "assets/README.md"
+  ],
+  "asset_ignore_prefixes": [
+    "assets/licenses/"
+  ],
+  "asset_manifest_license_headers": [
+    "许可",
+    "License",
+    "授权"
+  ]
+}

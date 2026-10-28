@@ -1,0 +1,128 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Gates (docs/code/assets/godot)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12.8"
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: "4.7.2"
+          use-dotnet: false
+      - name: Install pinned gdtoolkit
+        run: python -m pip install "gdtoolkit==4.5.0"
+      - name: Run local CI gates
+        run: >
+          python tools/ci/run_local.py --rounds 1
+          --skip scope,policy_tightening
+
+  scope:
+    name: Scope and policy budget (git diff)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12.8"
+      - name: Check allowed paths and file/line budget
+        run: python tools/ci/check_scope.py --base "$BASE_SHA" --head "$HEAD_SHA"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      - name: Check policy only tightens
+        run: python tools/ci/check_policy_tightening.py --base "$BASE_SHA"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      - name: Check protected tests were not deleted
+        run: >
+          python tools/ci/check_protected_tests.py
+          --base "$BASE_SHA" --head "$HEAD_SHA"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+
+  policy-approval:
+    name: Policy approval
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const policy = JSON.parse(fs.readFileSync('ci/policy.json', 'utf8'));
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner,
+              repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+            const touchesPolicy = files.some((file) =>
+              policy.policy_paths.some(
+                (path) => file.filename === path || file.filename.startsWith(path)
+              )
+            );
+            if (!touchesPolicy) {
+              core.info('No CI policy / protected files touched; approval not required.');
+              return;
+            }
+            if (pr.user.login === policy.policy_approver) {
+              core.setFailed(
+                `Policy files may not be self-approved: PR author @${pr.user.login} is the policy approver.`
+              );
+              return;
+            }
+            const reviews = await github.paginate(github.rest.pulls.listReviews, {
+              owner,
+              repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+            const latest = new Map();
+            for (const review of reviews) {
+              latest.set(review.user.login, review);
+            }
+            const approval = latest.get(policy.policy_approver);
+            if (
+              !approval ||
+              approval.state !== 'APPROVED' ||
+              approval.commit_id !== pr.head.sha
+            ) {
+              core.setFailed(
+                `CI policy / protected files changed. Requires an APPROVED review from ` +
+                  `@${policy.policy_approver} (not the PR author) on the current head ` +
+                  `${pr.head.sha}.`
+              );
+              return;
+            }
+            core.info(`Policy change approved by @${policy.policy_approver}.`);

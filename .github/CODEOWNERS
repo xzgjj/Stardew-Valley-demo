@@ -1,0 +1,10 @@
+# CI / regression policy changes require the repository owner to review.
+/.github/ @xzgjj
+/ci/ @xzgjj
+/tools/ci/ @xzgjj
+/CI.md @xzgjj
+/docs/ci_rules.md @xzgjj
+/GODOT_VERSION.txt @xzgjj
+/project.godot @xzgjj
+/tests/protected_test_cases.json @xzgjj
+/tests/test_*.gd @xzgjj

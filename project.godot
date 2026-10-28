@@ -1,0 +1,120 @@
+; Engine configuration file.
+; Stardew Valley 1:1 mechanics MVP — Godot 4.7.2 / GDScript.
+; Locked version: see GODOT_VERSION.txt (4.7.2.stable.official.ed1daf0bf).
+
+config_version=5
+
+[application]
+
+config/name="星露谷农场 MVP"
+config/description="Stardew Valley 1:1 mechanics replica — first farm scene, core MVP systems."
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameState="*res://scripts/autoload/game_state.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[input]
+
+move_left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":65), Object(InputEventKey,"physical_keycode":4194319)]
+}
+move_right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":68), Object(InputEventKey,"physical_keycode":4194321)]
+}
+move_up={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":87), Object(InputEventKey,"physical_keycode":4194320)]
+}
+move_down={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":83), Object(InputEventKey,"physical_keycode":4194322)]
+}
+use_tool={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":32)]
+}
+interact={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":69)]
+}
+toggle_help={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":4194306)]
+}
+pause_game={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":4194305)]
+}
+confirm={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":4194309)]
+}
+hotbar_1={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":49)]
+}
+hotbar_2={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":50)]
+}
+hotbar_3={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":51)]
+}
+hotbar_4={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":52)]
+}
+hotbar_5={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":53)]
+}
+hotbar_6={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":54)]
+}
+hotbar_7={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":55)]
+}
+hotbar_8={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":56)]
+}
+hotbar_9={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":57)]
+}
+hotbar_10={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":48)]
+}
+hotbar_11={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":45)]
+}
+hotbar_12={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":61)]
+}
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.11, 0.16, 0.2, 1)
