@@ -54,6 +54,7 @@
 - `ci/baseline_snapshot.json` 冻结三部分：`policy`（阈值/白名单/审批人/固定版本）、`protected_cases` + `test_files`（测试保护基线）、`files`（文件内容快照，用于无 git 仓库时的本地范围检查）。
 - `policy_tightening` 只允许：上界阈值持平或降低、白名单前缀持平或更窄、豁免项减少、政策路径/核心文档/版本文档增加、审批人与 gdtoolkit 版本不变。
 - `scope` 在本地对比快照；`--base SHA --head SHA` 时改用 git 三方 diff（GitHub Actions scope job 使用该模式，为权威口径）。
+- 行数预算口径：文本文件按 difflib 增删行精确统计；二进制文件（字体/图集等）只统计文件数、行数记 0（内容不可 diff，也不应把大文件体积折算成“行”）。
 - 首次引入（快照不存在）按“基线引入，不阻断”处理。
 - 刷新快照必须人工批准：`python tools/ci/baseline.py --trusted --force`。GitHub 环境中以 git 历史为准，不允许用刷新快照绕过预算。
 

@@ -66,15 +66,17 @@ def build_snapshot() -> dict:
         except OSError:
             continue
         rel = relative(path)
-        entry: dict = {"sha256": sha256_bytes(payload), "lines": count_lines(
-            payload.decode("utf-8", "replace")
-        )}
+        # Binary files contribute 0 diff lines: their content is not diffable and
+        # must not inflate the 2400-line budget (e.g. a 7MB font).  Only the
+        # file-count budget and sha256 comparison apply to them.
+        entry: dict = {"sha256": sha256_bytes(payload), "lines": 0}
         try:
             text = payload.decode("utf-8")
-            entry["text"] = text
-            entry["lines"] = count_lines(text)
         except UnicodeDecodeError:
             entry["binary"] = True
+        else:
+            entry["text"] = text
+            entry["lines"] = count_lines(text)
         files[rel] = entry
     return {
         "schema_version": 1,

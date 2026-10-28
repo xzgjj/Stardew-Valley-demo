@@ -25,3 +25,9 @@
 
 ## 追加 2026-10-28 v3：内容扩展（待评估）
 镇民日程/商店/矿洞/钓鱼等逐项估算后再排期，未评估不实现。
+
+## 追加 2026-10-28 v1 状态：素材定稿
+- 素材全部落地：Kenney CC0 三包切片 + 自制补格；字体改为 Fusion Pixel（OFL-1.1，含中文，替换缺字的 Ark Pixel）。
+- 素材校验 `tools/assets/prepare_assets.py --check` 通过；`docs/asset_manifest.md` 12 行全覆盖。
+- 已知问题（v1 内修）：HUD 时钟/日期文字在截图中出现重影（Label 无重复实例，待查渲染/主题层）；地图尺寸保持 7×4 农舍近似，农舍 9×5 与内部 10×7 的对齐留待 v1 后续 commit。
+- 阶段纪律：v1 commit 仅本地，推送需用户批准；Godot 不重复启动，验证走一次 `python tools/ci/run_local.py`。

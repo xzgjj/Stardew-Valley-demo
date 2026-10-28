@@ -1022,9 +1022,11 @@ def _check_font(errors: list[str]) -> None:
     except Exception as exc:  # noqa: BLE001 - 任何解析失败都要报可读信息
         errors.append(f"pixel.ttf 解析失败：{exc}")
         return
-    missing = [ch for ch in "晨溪农场金币种子收获" if ord(ch) not in cmap]
+    missing = [ch for ch in "晨溪农场金币种子收获禾宁防风草浇水" if ord(ch) not in cmap]
     if missing:
         errors.append(f"pixel.ttf 缺少简体中文字形：{''.join(missing)}")
+    if len(cmap) < 20000:
+        errors.append(f"pixel.ttf 字形数仅 {len(cmap)}，疑似不是完整中文字体")
 
 
 def _check_files(errors: list[str]) -> None:
@@ -1056,7 +1058,7 @@ def _check_sources(errors: list[str]) -> None:
         lic = ASSETS / "licenses" / f"kenney-{name}-License.txt"
         if not lic.exists():
             errors.append(f"缺少许可文本 {lic.relative_to(ROOT)}")
-    ofl = ASSETS / "licenses" / "ark-pixel-font-OFL.txt"
+    ofl = ASSETS / "licenses" / "fusion-pixel-font-OFL.txt"
     if not ofl.exists():
         errors.append(f"缺少字体许可文本 {ofl.relative_to(ROOT)}")
 

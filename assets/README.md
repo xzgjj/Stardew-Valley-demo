@@ -8,9 +8,9 @@
 | `characters/` | 四方向行走图集（64x64 = 4 列 x 4 行，16x16/帧；行序 down/left/right/up） |
 | `ui/` | `panel.png`(48x48 九宫格，边框 8px)、`icons.png`(160x16, 10 个图标) |
 | `props/` | 场景摆件：`farmhouse.png`(112x64 = 7x4 格农舍外观) |
-| `fonts/` | v1 计划放入 Ark Pixel 12px（OFL-1.1）；当前用系统字体兜底 |
+| `fonts/` | `pixel.ttf`：Fusion Pixel 12px（OFL-1.1，简体中文 38,130 字形），UI 中文必须用它；无它则中文显示方块 |
 | `source/kenney/` | Kenney CC0 原始图集（切片原料，勿手改） |
-| `licenses/` | 许可原文：Kenney 三包 License.txt、CC0 法律文本、Ark Pixel OFL 文本 |
+| `licenses/` | 许可原文：Kenney 三包 License.txt、CC0 法律文本、Fusion Pixel OFL 文本 |
 
 ## 生成与校验（不要手改 PNG）
 
