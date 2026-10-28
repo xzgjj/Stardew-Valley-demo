@@ -4,3 +4,26 @@
 __pycache__/
 *.pyc
 /android/
+
+# 本地文档 / 规划 / 决策（不上传、不追踪）
+CLAUDE.md
+notes.txt
+implementation_plan.md
+diff.md
+AGENT_EXECUTION_PROTOCOL.md
+implementation-notes.md
+SPEC.md
+CI.md
+CLI.md
+ci.md
+cli.md
+docs/
+
+# 测试（本地生成，统一放在 tests/；test/ 兼容旧约定）
+tests/
+test/
+
+# 日志与临时产物
+*.log
+logs/
+*.tmp
