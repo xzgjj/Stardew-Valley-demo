@@ -9,3 +9,4 @@
 | 2026-10-28 | `main` 推 v0.1 基线，阶段分支 v1/v2… | 锁定单版本、增量开发 | commit 标题 `<分支>_[audit_NN]<Name>` |
 | 2026-10-28 | 每功能先测试后提交；commit 500–800 行；未批准不推送 | 质量门与人工 review | 见 `AGENT_EXECUTION_PROTOCOL.md` |
 | 2026-10-28 | 文档原地更新，`implementation_plan.md` 只追加 | 保留原方案记录 | 推翻决策需写明原因 |
+| 2026-10-28 | 版本对齐以 1.6 机制为主、1.7 只做观察 | 1.7 仅 3 项官方确认 | `docs/research_stardew_versions.md` |
