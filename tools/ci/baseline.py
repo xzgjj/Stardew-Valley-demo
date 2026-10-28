@@ -23,6 +23,7 @@ from ci_common import (
     BASELINE_PATH,
     ROOT,
     count_lines,
+    is_binary_file,
     iter_project_files,
     load_json,
     load_policy,
@@ -70,11 +71,10 @@ def build_snapshot() -> dict:
         # must not inflate the 2400-line budget (e.g. a 7MB font).  Only the
         # file-count budget and sha256 comparison apply to them.
         entry: dict = {"sha256": sha256_bytes(payload), "lines": 0}
-        try:
-            text = payload.decode("utf-8")
-        except UnicodeDecodeError:
+        if is_binary_file(path, payload):
             entry["binary"] = True
         else:
+            text = payload.decode("utf-8")
             entry["text"] = text
             entry["lines"] = count_lines(text)
         files[rel] = entry

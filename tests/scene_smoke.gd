@@ -22,9 +22,9 @@ func _ready() -> void:
 	add_child(house)
 	_check(house.player != null, "farmhouse spawns a player")
 	_check(house.hud != null, "farmhouse spawns the HUD")
-	_check(house.map_size == Vector2i(14, 10), "farmhouse map size is 14x10")
+	_check(house.map_size == Vector2i(10, 7), "farmhouse map size is 14x10")
 	_check(house.blocked.size() > 30, "farmhouse has walls")
-	_check(not house.is_walkable(Vector2(7 * 16 + 8, 9 * 16 + 8)), "farmhouse exit door is blocked")
+	_check(not house.is_walkable(Vector2(5 * 16 + 8, 6 * 16 + 8)), "farmhouse exit door is blocked")
 	get_tree().quit(1 if failures > 0 else 0)
 
 

@@ -26,6 +26,7 @@ from ci_common import (
     Result,
     count_lines,
     iter_project_files,
+    is_binary_file,
     load_json,
     load_policy,
     read_text,
@@ -91,12 +92,12 @@ def _snapshot_changes() -> tuple[list[str], list[str], list[str], int] | None:
         except OSError:
             continue
         entry: dict = {"sha256": sha256_bytes(payload), "lines": 0}
-        try:
+        if is_binary_file(path, payload):
+            entry["binary"] = True
+        else:
             text = payload.decode("utf-8")
             entry["text"] = text
             entry["lines"] = count_lines(text)
-        except UnicodeDecodeError:
-            entry["binary"] = True
         current[rel] = entry
 
     added = sorted(set(current) - set(baseline_files))

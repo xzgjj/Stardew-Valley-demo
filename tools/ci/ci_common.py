@@ -58,6 +58,10 @@ TEXT_SUFFIXES = {
     ".gitattributes",
     ".editorconfig",
     ".csv",
+    ".svg",
+    ".xml",
+    ".toml",
+    ".ini",
 }
 
 ANSI_RE = re.compile(r"\x1b\[[0-9;?]*[A-Za-z]")
@@ -176,6 +180,24 @@ def sha256_bytes(payload: bytes) -> str:
 
 def count_lines(text: str) -> int:
     return len(text.splitlines())
+
+
+def is_binary_file(path: Path, payload: bytes) -> bool:
+    """Classify a project file for line-budget accounting.
+
+    A file is binary when its suffix is not a known text suffix (fonts, PNG,
+    TTF, audio...) or when its bytes are not valid UTF-8.  Binary files are
+    counted by file count only: their content cannot be diffed by line and a
+    multi-megabyte font must not be converted into tens of thousands of
+    "changed lines".
+    """
+    if Path(path).suffix.lower() not in TEXT_SUFFIXES:
+        return True
+    try:
+        payload.decode("utf-8")
+    except UnicodeDecodeError:
+        return True
+    return False
 
 
 def resolve_godot(policy: dict | None = None) -> tuple[str | None, list[str]]:

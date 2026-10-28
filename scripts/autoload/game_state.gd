@@ -258,7 +258,7 @@ func pass_out() -> void:
 func change_scene(target: String) -> void:
 	if target == "house":
 		current_scene = "house"
-		spawn_cell = Vector2i(7, 8)
+		spawn_cell = Vector2i(5, 5)
 		get_tree().change_scene_to_file(HOUSE_SCENE)
 	else:
 		current_scene = "farm"

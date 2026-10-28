@@ -1,10 +1,10 @@
 extends WorldScene
 ## 农舍内部：木地板房间、床（睡觉推进到第二天）、出口门回农场。
 
-const ROOM_SIZE := Vector2i(14, 10)
-const DOOR_CELL := Vector2i(7, 9)
-const BED_CELLS := [Vector2i(3, 2), Vector2i(4, 2), Vector2i(3, 3), Vector2i(4, 3)]
-const SPAWN_CELL := Vector2i(7, 8)
+const ROOM_SIZE := Vector2i(10, 7)
+const DOOR_CELL := Vector2i(5, 6)
+const BED_CELLS := [Vector2i(2, 2), Vector2i(3, 2), Vector2i(2, 3), Vector2i(3, 3)]
+const SPAWN_CELL := Vector2i(5, 5)
 
 
 func _build_world() -> void:
@@ -40,7 +40,7 @@ func _build_bed() -> void:
 	for cell in BED_CELLS:
 		_block_cell(cell)
 	var node := Node2D.new()
-	node.position = Vector2(3 * 16.0, 2 * 16.0)
+	node.position = Vector2(2 * 16.0, 2 * 16.0)
 	var frame := ColorRect.new()
 	frame.color = Color("6b4a2a")
 	frame.size = Vector2(32, 32)

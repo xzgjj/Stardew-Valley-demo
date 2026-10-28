@@ -5,9 +5,9 @@ const VillagerScript = preload("res://scripts/world/villager.gd")
 
 const HOUSE_RECT := Rect2i(12, 6, 7, 4)
 const DOOR_CELL := Vector2i(15, 9)
-const BIN_CELL := Vector2i(19, 11)
-const MAILBOX_CELL := Vector2i(13, 11)
-const GREENHOUSE_RECT := Rect2i(57, 6, 7, 5)
+const BIN_CELL := Vector2i(20, 8)
+const MAILBOX_CELL := Vector2i(19, 11)
+const GREENHOUSE_RECT := Rect2i(54, 5, 12, 10)
 const VILLAGER_CELL := Vector2i(22, 12)
 const SCATTER_SEED := 20261028
 
